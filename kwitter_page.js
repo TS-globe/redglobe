@@ -37,7 +37,7 @@ console.log(sender);
 console.log(like);
 console.log(msg);
 
-  document.getElementById("output").innerHTML+="<div><h1>"+ sender +"</h1><br><p class='messageh4'>"+ msg +"</p><br><button onclick='like1(this.id)' id="+firebase_message_id+">"+ like +"</button></div>"
+  document.getElementById("output").innerHTML+="<div><h1>"+ sender +"</h1><br><p class='messageh4'>"+ msg +"</p><br><button onclick='like1(this.id)' class='like_button ' id="+firebase_message_id+">Like: "+ like +"</i></button></div> <i class='fa-thin fa-thumbs-up'>"
 //End code
       } });  }); }
 getData();
@@ -49,10 +49,15 @@ function like1(msg_id)
 {
       msg_like = document.getElementById(msg_id).value;
       msg_like = Number(msg_like);
-      msg_like = msg_like + 1;
+      msg_like = msg_like+1;
       firebase.database().ref(romname).child(msg_id).update(
             {
                   like: msg_like
             }
       )
+}
+function logout() {
+      localStorage.removeItem("username")
+      localStorage.removeItem("password")
+      window.location = "index.html";
 }
